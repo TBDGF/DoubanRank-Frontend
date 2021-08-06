@@ -26,17 +26,17 @@ function App() {
                 <Space direction="vertical">
                     <Row justify="center">
                         <Col>
-                            <Card title="豆瓣小组活跃榜" style={{width: 800,background:"rgba(255,255,255,0.8)"}}>
+                            <Card title="豆瓣小组活跃榜" style={{width: 800,background:"rgba(255,255,255,0.8)"}} bordered={false}>
                                 <p>本排名非官方排名，数据仅供参考，每周随缘更新</p>
                                 <p>筛选：一周内回复数大于100的</p>
                                 <p>单帖超过1000以上的不计入总回复数</p>
-                                <p>背景 by {<a href="https://space.bilibili.com/14289952">raesidonia</a>}</p>
+                                {/*<p>背景 by {<a href="https://space.bilibili.com/14289952">raesidonia</a>}</p>*/}
                             </Card>
                         </Col>
                     </Row>
                     <Row justify="center">
                         <Col>
-                            <Card title="排名" style={{width: 800,background:"rgba(255,255,255,0.8)"}}>
+                            <Card style={{width: 800,background:"rgba(255,255,255,0.8)"}}>
                                 <RankedTable/>
                             </Card>
                         </Col>

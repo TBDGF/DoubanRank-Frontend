@@ -5,52 +5,48 @@ import {request} from "../api/request";
 const {Column} = Table;
 
 const datasource = [
-    {
-        key: '1',
-        rank: 1,
-        groupName: "豆瓣魂组",
-        groupMember: 123,
-        commentCount: 666,
-        averageComment: 0.25,
-        updateTime: "今天",
-    },
-    {
-        key: '2',
-        rank: 2,
-        groupName: "乃琳",
-        groupMember: 100,
-        commentCount: 500,
-        averageComment: 0.25,
-        updateTime: "今天",
-    },
 ]
-for (let i = 3; i < 45; i++) {
-    datasource.push({
-        key: i,
-        rank: i,
-        groupName: "豆瓣魂组",
-        groupMember: 123,
-        commentCount: 666,
-        averageComment: 0.25,
-        updateTime: "今天",
-    });
-}
 
 class RankedTable extends React.Component {
-
+    state={
+        data: [],
+    }
 
     componentDidMount() {
-        request({
-            url: '/api/data',
-            method: 'get',
-        }).then(function (res) {
-            console.log(res)
-        })
+        fetch(
+            "https://rank.allenji.cn/api/rank",{
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                    'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS'
+                },
+            }
+
+        )
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                res.forEach((item,index) => {
+                    datasource.push({
+                        key: index+1,
+                        rank: index+1,
+                        groupName: item.group_name,
+                        groupMember: item.member,
+                        commentCount: 20,
+                        averageComment: item.member/20,
+                        updateTime: item.update_time,
+                    });
+                })
+                this.setState({data:datasource})
+            })
+            .catch(e => console.log('错误:', e))
     }
 
     render() {
         return (
-            <Table dataSource={datasource} >
+            <Table dataSource={this.state.data} size="middle">
                 <Column title="排名" dataIndex="rank" key="rank"/>
                 <Column title="组名" dataIndex="groupName" key="groupName"/>
                 <Column title="人数" dataIndex="groupMember" key="groupMember"/>

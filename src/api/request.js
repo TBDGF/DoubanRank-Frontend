@@ -1,4 +1,4 @@
-const commonUrl="localhost:8080"
+const commonUrl="https://127.0.0.1:8080"
 
 function parseJSON(response){
     return response.json()

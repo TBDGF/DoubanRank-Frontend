@@ -6,14 +6,19 @@ import RankedTable from "./lib/RankedTable";
 function App() {
     const onFinish = (value) => {
         console.log(value)
+        console.log(JSON.stringify(value))
         fetch(
             "https://rank.allenji.cn/api/list", {
                 method: "post",
-                body: value
+                headers:{'Content-Type': 'application/json'},
+                body: JSON.stringify(value)
         }).then(res => {
                 return res.json()
         }).then(res=>{
-            console.log(res)
+            if(res.status==0)
+                message.info('添加成功');
+            else
+                message.info('添加失败，请检查格式或联系作者');
         })
 
     };
@@ -33,7 +38,7 @@ function App() {
                                 <p>本排名非官方排名，数据仅供参考，每周随缘更新</p>
                                 <p>筛选：一周内回复数大于100的</p>
                                 <p>单帖超过1000以上的不计入总回复数</p>
-                                {/*<p>背景 by {<a href="https://space.bilibili.com/14289952">raesidonia</a>}</p>*/}
+                                <h3>by 豆瓣魂组:{<a href="https://blog.allenji.cn">Allen ji</a>}</h3>
                             </Card>
                         </Col>
                     </Row>
@@ -60,7 +65,7 @@ function App() {
                                 >
                                     <Form.Item
                                         label="小组网页链接"
-                                        name="groupUrl"
+                                        name="group_url"
                                         rules={[{required: true, message: '请输入小组网页链接'}]}
                                     >
                                         <Input placeholder="例如：https://www.douban.com/group/a-soul/"/>

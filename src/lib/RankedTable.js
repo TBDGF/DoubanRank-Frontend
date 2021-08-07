@@ -1,6 +1,5 @@
 import {Table} from 'antd';
 import React from "react";
-import {request} from "../api/request";
 
 const {Column} = Table;
 
@@ -28,8 +27,9 @@ class RankedTable extends React.Component {
                         groupName: item.group_name,
                         groupMember: item.member,
                         commentCount: item.comment,
-                        averageComment: (item.member / item.comment).toFixed(2),
+                        averageComment: (item.comment/item.member).toFixed(2),
                         updateTime: item.update_time,
+                        groupUrl:item.group_url,
                     });
                 })
                 this.setState({data: datasource})
@@ -41,7 +41,9 @@ class RankedTable extends React.Component {
         return (
             <Table dataSource={this.state.data} size="middle" pagination={{defaultPageSize: 50,}}>
                 <Column title="排名" dataIndex="rank" key="rank" align="center"/>
-                <Column title="组名" dataIndex="groupName" key="groupName"/>
+                <Column title="组名" dataIndex="groupName" key="groupName" render={(text, record, index)=> {
+                    return <a href={this.state.data[index].groupUrl} target="_blank">{text}</a>
+                }}/>
                 <Column title="人数" dataIndex="groupMember" key="groupMember" align="center"/>
                 <Column title="活跃讨论数" dataIndex="commentCount" key="commentCount" align="center"/>
                 <Column title="人均讨论数" dataIndex="averageComment" key="averageComment" align="center"/>

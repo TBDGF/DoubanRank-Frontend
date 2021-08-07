@@ -25,9 +25,9 @@ class RankedTable extends React.Component {
                         key: index + 1,
                         rank: index + 1,
                         groupName: item.group_name,
-                        groupMember: item.member,
-                        commentCount: item.comment,
-                        averageComment: (item.comment/item.member).toFixed(2),
+                        groupMember: item.group_member,
+                        commentCount: item.group_comment,
+                        averageComment: (item.group_comment/item.group_member).toFixed(2),
                         updateTime: item.update_time,
                         groupUrl:item.group_url,
                     });

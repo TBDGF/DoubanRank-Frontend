@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/douban-rank-fronted.iml" filepath="$PROJECT_DIR$/.idea/douban-rank-fronted.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DoubanRank-Frontend.iml" filepath="$PROJECT_DIR$/.idea/DoubanRank-Frontend.iml" />
     </modules>
   </component>
 </project>

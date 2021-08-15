@@ -1,10 +1,14 @@
 import './App.css';
 import {React,useEffect,useState} from "react";
-import {message, Row, Col, Card, Form, Input, Button, Space} from 'antd';
+import {message, Row, Col, Card, Form, Input, Button, Space,Collapse,Typography,Avatar} from 'antd';
 import 'antd/dist/antd.css';
 import RankedTable from "./lib/RankedTable";
 import {getAllRank, getSearchRank} from "./api/request";
 
+
+const { Panel } = Collapse;
+const { Text } = Typography;
+const { Meta } = Card;
 
 const tailLayout = {
     wrapperCol: {
@@ -63,6 +67,11 @@ function App() {
         console.log("clear")
     }
 
+    function callback(key) {
+        console.log(key);
+    }
+
+
     return (
         <div className="App">
             <>
@@ -72,10 +81,41 @@ function App() {
                             <Card title="豆瓣小组活跃榜" style={{width: 800, background: "rgba(255,255,255,0.8)"}}
                                   bordered={false}>
                                 <p>本排名非官方排名，数据仅供参考，大概每周末更新</p>
-                                <p>筛选：一周内回复数大于100的</p>
-                                <p>单帖超过1000以上的不计入总回复数</p>
                                 <h3>by {<a href="https://www.douban.com/group/a-soul/" target="_blank">豆瓣魂组</a>} : {<a
                                     href="https://blog.allenji.cn" target="_blank">Allen ji</a>}</h3>
+                                <Collapse defaultActiveKey={['4']} ghost accordion onChange={callback}>
+                                    <Panel header={<Text>统计规则</Text>} key="1">
+                                        <Space direction='vertical'>
+                                            <Text>统计一周内活跃的帖子回复数总和</Text>
+                                            <Text>单帖回复超过1000的，不计入总数</Text>
+                                        </Space>
+                                    </Panel>
+                                    <Panel header={<Text>更新日志</Text>} key="2">
+                                        <p>8.14 : 新增查询功能</p>
+                                    </Panel>
+                                    <Panel header={<Text type="warning">转载规则</Text>} key="3">
+                                        <p>转载请注明来自{<a href="https://www.douban.com/group/a-soul/" target="_blank">豆瓣魂组</a>}或{<a
+                                            href="https://blog.allenji.cn" target="_blank">Allen ji</a>}</p>
+                                        <p>希望不要一边用我的排行榜一边骂我😇</p>
+                                    </Panel>
+                                    <Panel header={<Text type="warning">小引一波</Text>} key="4">
+                                        <Space>
+                                            <Card bordered={false} style={{width:300}} cover={<img alt="ss" src="https://i.loli.net/2021/08/15/3BxItWnqCaPNeLs.jpg" />}>
+                                                <Meta title={<a href="https://space.bilibili.com/703007996/" target="_blank">A-SOUL</a>}
+                                                      description="A-SOUL 是小姐姐们用动捕技术展现出的3D虚拟形象,是国内首个由娱乐公司运营的虚拟偶像企划。团队由五位性格、 特长、爱好各异的女孩组成。" />
+                                            </Card>
+                                            <Card bordered={false}>
+                                                <p>了解一下可爱的五位小姐姐吧 : </p>
+                                                <p>吃货担当 ~ <a href="https://space.bilibili.com/672328094/" target="_blank">嘉然</a> {<Avatar src="https://i.loli.net/2021/08/15/ozKxTeEnLlNrsp1.jpg"/>}</p>
+                                                <p>Vocal担当 ~ <a href="https://space.bilibili.com/351609538/" target="_blank">珈乐</a> {<Avatar src="https://i.loli.net/2021/08/15/Xg1vAWme3KwdEU4.jpg"/>}</p>
+                                                <p>MC担当 ~ <a href="https://space.bilibili.com/672342685/" target="_blank">乃琳</a> {<Avatar src="https://i.loli.net/2021/08/15/ztx4voJKA8T1wn9.jpg"/>}</p>
+                                                <p>舞担兼任队长 ~ <a href="https://space.bilibili.com/672353429/" target="_blank">贝拉</a> {<Avatar src="https://i.loli.net/2021/08/15/H7CD5vzr3kxhwuN.jpg"/>}</p>
+                                                <p>Gamer担当 ~ <a href="https://space.bilibili.com/672346917/" target="_blank">向晚</a> {<Avatar src="https://i.loli.net/2021/08/15/jYVzZfMx7gbpNTo.jpg"/>}</p>
+                                            </Card>
+                                        </Space>
+                                    </Panel>
+                                </Collapse>
+
                             </Card>
                         </Col>
                     </Row>
@@ -152,6 +192,7 @@ function App() {
                     <Row justify="center">
                         <Card style={{width: 800, background: "rgba(255,255,255,0.8)"}} bordered={false}>
                             <p>联系我: rtbdgf@163.com</p>
+                            <p>网站备案 : <a href="https://beian.miit.gov.cn">冀ICP备2020025647号-2</a></p>
                         </Card>
                     </Row>
                 </Space>

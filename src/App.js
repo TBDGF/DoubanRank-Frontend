@@ -83,7 +83,7 @@ function App() {
                                 <p>本排名非官方排名，数据仅供参考，大概每周末更新</p>
                                 <h3>by {<a href="https://www.douban.com/group/a-soul/" target="_blank">豆瓣魂组</a>} : {<a
                                     href="https://blog.allenji.cn" target="_blank">Allen ji</a>}</h3>
-                                <Collapse defaultActiveKey={['4']} ghost accordion onChange={callback}>
+                                <Collapse defaultActiveKey={['3']} ghost accordion onChange={callback}>
                                     <Panel header={<Text>统计规则</Text>} key="1">
                                         <Space direction='vertical'>
                                             <Text>统计一周内活跃的帖子回复数总和</Text>
@@ -93,12 +93,10 @@ function App() {
                                     <Panel header={<Text>更新日志</Text>} key="2">
                                         <p>8.14 : 新增查询功能</p>
                                     </Panel>
-                                    <Panel header={<Text type="warning">转载规则</Text>} key="3">
+                                    <Panel header={<Text type="warning">小引一波</Text>} key="3">
                                         <p>转载请注明来自{<a href="https://www.douban.com/group/a-soul/" target="_blank">豆瓣魂组</a>}或{<a
                                             href="https://blog.allenji.cn" target="_blank">Allen ji</a>}</p>
-                                        <p>希望不要一边用我的排行榜一边骂我😇</p>
-                                    </Panel>
-                                    <Panel header={<Text type="warning">小引一波</Text>} key="4">
+                                        <p>希望不要一边用我们的排行榜一边骂我们😇</p>
                                         <Space>
                                             <Card bordered={false} style={{width:300}} cover={<img alt="ss" src="https://i.loli.net/2021/08/15/3BxItWnqCaPNeLs.jpg" />}>
                                                 <Meta title={<a href="https://space.bilibili.com/703007996/" target="_blank">A-SOUL</a>}
@@ -106,11 +104,13 @@ function App() {
                                             </Card>
                                             <Card bordered={false}>
                                                 <p>了解一下可爱的五位小姐姐吧 : </p>
-                                                <p>吃货担当 ~ <a href="https://space.bilibili.com/672328094/" target="_blank">嘉然</a> {<Avatar src="https://i.loli.net/2021/08/15/ozKxTeEnLlNrsp1.jpg"/>}</p>
-                                                <p>Vocal担当 ~ <a href="https://space.bilibili.com/351609538/" target="_blank">珈乐</a> {<Avatar src="https://i.loli.net/2021/08/15/Xg1vAWme3KwdEU4.jpg"/>}</p>
-                                                <p>MC担当 ~ <a href="https://space.bilibili.com/672342685/" target="_blank">乃琳</a> {<Avatar src="https://i.loli.net/2021/08/15/ztx4voJKA8T1wn9.jpg"/>}</p>
-                                                <p>舞担兼任队长 ~ <a href="https://space.bilibili.com/672353429/" target="_blank">贝拉</a> {<Avatar src="https://i.loli.net/2021/08/15/H7CD5vzr3kxhwuN.jpg"/>}</p>
-                                                <p>Gamer担当 ~ <a href="https://space.bilibili.com/672346917/" target="_blank">向晚</a> {<Avatar src="https://i.loli.net/2021/08/15/jYVzZfMx7gbpNTo.jpg"/>}</p>
+                                                <Space direction='vertical' align="end">
+                                                    <Text>Gamer担当 ~ <a href="https://space.bilibili.com/672346917/" target="_blank">向晚Ava</a> {<Avatar src="https://i.loli.net/2021/08/15/jYVzZfMx7gbpNTo.jpg"/>}</Text>
+                                                    <Text>舞担兼任队长 ~ <a href="https://space.bilibili.com/672353429/" target="_blank">贝拉Bella</a> {<Avatar src="https://i.loli.net/2021/08/15/H7CD5vzr3kxhwuN.jpg"/>}</Text>
+                                                    <Text>Vocal担当 ~ <a href="https://space.bilibili.com/351609538/" target="_blank">珈乐Carol</a> {<Avatar src="https://i.loli.net/2021/08/15/Xg1vAWme3KwdEU4.jpg"/>}</Text>
+                                                    <Text>吃货担当 ~ <a href="https://space.bilibili.com/672328094/" target="_blank">嘉然Diana</a> {<Avatar src="https://i.loli.net/2021/08/15/ozKxTeEnLlNrsp1.jpg"/>}</Text>
+                                                    <Text>MC担当 ~ <a href="https://space.bilibili.com/672342685/" target="_blank">乃琳Eileen</a> {<Avatar src="https://i.loli.net/2021/08/15/ztx4voJKA8T1wn9.jpg"/>}</Text>
+                                                </Space>
                                             </Card>
                                         </Space>
                                     </Panel>

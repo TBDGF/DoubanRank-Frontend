@@ -1,9 +1,12 @@
 import './App.css';
 import {React, useEffect, useState} from "react";
-import {message, Row, Col, Card, Form, Input, Button, Space, Collapse, Typography, Avatar} from 'antd';
+import {
+    message, Row, Col, Card, Form,
+    Input, Button, Space, Collapse, Typography, Avatar, notification
+} from 'antd';
 import 'antd/dist/antd.css';
 import RankedTable from "./lib/RankedTable";
-import {getAllRank, getSearchRank} from "./api/request";
+import {getAllRank, getNotice, getSearchRank} from "./api/request";
 
 
 const {Panel} = Collapse;
@@ -21,13 +24,34 @@ const cardStyle = {
 function App() {
     const [searchRank, setSearchRank] = useState(null);
     const [allRank, setAllRank] = useState(null);
+    const [notice, setNotice] = useState(null)
 
     useEffect(() => {
-        getAllRank().then(rank => {
-            setAllRank(rank)
-        })
+        if (!allRank) {
+            getAllRank().then(rank => {
+                setAllRank(rank)
+            })
+        }
+        if (!notice) {
+            getNotice().then(result =>
+                setNotice(result)
+            )
+        }
+
         console.log("use effect ended")
     }, [])
+
+    useEffect(() => {
+        if (notice) {
+            notification.open({
+                message: <Text type="warning">公告</Text>,
+                description: <div>{notice.map(content => {
+                    return <p>{content}</p>
+                })}</div>
+            });
+        }
+    }, [notice])
+
 
     const onFinish = (value) => {
         console.log(value)
@@ -94,11 +118,10 @@ function App() {
                                     <p>8.14 : 新增查询功能</p>
                                 </Panel>
                                 <Panel header={<Text type="warning">小引一波</Text>} key="3">
-                                    <p>转载请注明来自{<a href="https://www.douban.com/group/a-soul/" target="_blank">豆瓣魂组</a>}或{
-                                        <a
-                                            href="https://blog.allenji.cn" target="_blank">Allen ji</a>}</p>
+                                    <p>转载请注明来自{<a href="https://www.douban.com/group/a-soul/" target="_blank">豆瓣魂组</a>}
+                                        或{<a href="https://blog.allenji.cn" target="_blank">Allen ji</a>}</p>
                                     <p>希望不要一边用我们的排行榜一边骂我们😇</p>
-                                    <Row  justify="center">
+                                    <Row justify="center">
                                         <Col span={16}>
                                             <Card bordered={false} style={{background: "rgba(255,255,255,0)"}}
                                                   cover={<img alt="ss"
@@ -109,7 +132,7 @@ function App() {
                                             </Card>
                                         </Col>
                                     </Row>
-                                    <Row  justify="center">
+                                    <Row justify="center">
                                         <Col>
                                             <Card bordered={false} style={{background: "rgba(255,255,255,0)"}}>
                                                 <p>了解一下可爱的五位小姐姐吧 : </p>
@@ -161,7 +184,7 @@ function App() {
                                 initialValues={{remember: true}}
                                 onFinish={onCheckFinish}
                                 onFinishFailed={onCheckFinishFailed}
-                                style={{ margin: "0 auto"}}
+                                style={{margin: "0 auto"}}
                             >
                                 <Form.Item
                                     label="组名"
@@ -188,8 +211,9 @@ function App() {
                         <Card title="没有找到您想看到的小组？" style={cardStyle}>
                             <p>由于作者较难获取豆瓣所有的小组列表，所以只是简单爬取了一下“讨论精选”板块</p>
                             <p>别担心，在下面提交你的小组链接，我会在下一周期加上您提交过的小组</p>
-                            <p>如果您的小组为私密小组，请将作者{<a href="https://www.douban.com/people/238444551/"
-                                                   target='_blank'>@AllenJi</a>}拉进您的小组内!</p>
+                            <p>如果您的小组为私密小组，
+                                请将作者{<a href="https://www.douban.com/people/238444551/" target='_blank'>@AllenJi</a>}
+                                拉进您的小组内!</p>
                             <Form
                                 name="basic"
                                 // labelCol={{span: 8}}
@@ -197,7 +221,7 @@ function App() {
                                 initialValues={{remember: true}}
                                 onFinish={onFinish}
                                 onFinishFailed={onFinishFailed}
-                                style={{ margin: "0 auto"}}
+                                style={{margin: "0 auto"}}
                             >
                                 <Form.Item
                                     label="小组网页链接"

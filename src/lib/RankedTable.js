@@ -16,7 +16,7 @@ class RankedTable extends React.Component {
                 <Table dataSource={this.props.rank} size="middle" pagination={{defaultPageSize: this.props.pageSize,}}>
                     <Column title="排名" dataIndex="rank" key="rank" align="center"/>
                     <Column title="组名" dataIndex="groupName" key="groupName" render={(text, record, index) => {
-                        return <a href={this.props.rank[index].groupUrl} target="_blank">{text}</a>
+                        return <a href={record.groupUrl} target="_blank">{text}</a>
                     }}/>
                     <Column title="人数" dataIndex="groupMember" key="groupMember" align="center"
                             responsive={['md', 'lg']}/>
